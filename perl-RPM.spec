@@ -3,14 +3,14 @@ Summary:	Native bindings to the RPM Package Manager API for Perl
 Summary(pl):	Natywne dowi±zania do API zarz±dcy pakietów RPM
 Name:		perl-RPM
 Version:	0.40
-Release:	3
+Release:	4
 License:	GPL
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/RPM/Perl-RPM-%{version}.tar.gz
 Patch0:		%{name}-old-include.patch
 BuildRequires:	perl-devel >= 5.6.1
 BuildRequires:	rpm-devel
-BuildRequires:	rpm-perlprov >= 3.0.3-16
+BuildRequires:	rpm-perlprov >= 4.1-13
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	Perl-RPM
 
@@ -35,7 +35,8 @@ lub C++.
 %patch0 -p1
 
 %build
-%{__perl} Makefile.PL
+%{__perl} Makefile.PL \
+	INSTALLDIRS=vendor 
 %{__make}
 
 %install
@@ -50,9 +51,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc README
 %attr(755,root,root) %{_bindir}/rpmprune
-%{perl_sitearch}/RPM.pm
-%{perl_sitearch}/RPM
-%dir %{perl_sitearch}/auto/RPM
-%{perl_sitearch}/auto/RPM/*.bs
-%attr(755,root,root) %{perl_sitearch}/auto/RPM/*.so
+%{perl_vendorarch}/RPM.pm
+%{perl_vendorarch}/RPM
+%dir %{perl_vendorarch}/auto/RPM
+%{perl_vendorarch}/auto/RPM/*.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/RPM/*.so
 %{_mandir}/man[13]/*
