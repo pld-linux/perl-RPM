@@ -1,0 +1,419 @@
+--- Perl-RPM-0.40/RPM/Constants.xs.orig	2002-04-12 00:40:20.000000000 +0200
++++ Perl-RPM-0.40/RPM/Constants.xs	2003-11-16 16:26:20.685802368 +0100
+@@ -12,22 +12,17 @@
+ 
+     switch (*name)
+     {
+-      case 'C':
+-        if (strnEQ(name, "CHECKSIG_", 9))
+-        {
+-            if (strEQ(name + 9, "GPG"))
+-                return CHECKSIG_GPG;
+-            if (strEQ(name + 9, "MD5"))
+-                return CHECKSIG_MD5;
+-            if (strEQ(name + 9, "PGP"))
+-                return CHECKSIG_PGP;
+-        }
+-        break;
+       case 'I':
+         if (strnEQ(name, "INSTALL_", 8))
+         {
++	    if (strEQ(name + 8, "ERASE"))
++		return INSTALL_ERASE;
++	    if (strEQ(name + 8, "FRESHEN"))
++		return INSTALL_FRESHEN;
+             if (strEQ(name + 8, "HASH"))
+                 return INSTALL_HASH;
++            if (strEQ(name + 8, "INSTALL"))
++                return INSTALL_INSTALL;
+             if (strEQ(name + 8, "LABEL"))
+                 return INSTALL_LABEL;
+             if (strEQ(name + 8, "NODEPS"))
+@@ -103,14 +98,20 @@
+                     return RPMERR_BADDEV;
+                 if (strEQ(name + 7, "BADFILENAME"))
+                     return RPMERR_BADFILENAME;
++                if (strEQ(name + 7, "BADHEADER"))
++                    return RPMERR_BADHEADER;
+                 if (strEQ(name + 7, "BADMAGIC"))
+                     return RPMERR_BADMAGIC;
++                if (strEQ(name + 7, "BADPACKAGE"))
++                    return RPMERR_BADPACKAGE;
+                 if (strEQ(name + 7, "BADRELOCATE"))
+                     return RPMERR_BADRELOCATE;
+                 if (strEQ(name + 7, "BADSIGTYPE"))
+                     return RPMERR_BADSIGTYPE;
+                 if (strEQ(name + 7, "BADSPEC"))
+                     return RPMERR_BADSPEC;
++                if (strEQ(name + 7, "BUILDROOT"))
++                    return RPMERR_BUILDROOT;
+                 break;
+               case 'C':
+                 if (strEQ(name + 7, "CHOWN"))
+@@ -121,8 +122,14 @@
+                     return RPMERR_CREATE;
+                 break;
+               case 'D':
++                if (strEQ(name + 7, "DATATYPE"))
++                    return RPMERR_DATATYPE;
++                if (strEQ(name + 7, "DBCONFIG"))
++                    return RPMERR_DBCONFIG;
+                 if (strEQ(name + 7, "DBCORRUPT"))
+                     return RPMERR_DBCORRUPT;
++                if (strEQ(name + 7, "DBERR"))
++                    return RPMERR_DBERR;
+                 if (strEQ(name + 7, "DBGETINDEX"))
+                     return RPMERR_DBGETINDEX;
+                 if (strEQ(name + 7, "DBOPEN"))
+@@ -141,6 +148,14 @@
+                     return RPMERR_FLOCK;
+                 if (strEQ(name + 7, "FORK"))
+                     return RPMERR_FORK;
++                if (strEQ(name + 7, "FREAD"))
++                    return RPMERR_FREAD;
++                if (strEQ(name + 7, "FREELIST"))
++                    return RPMERR_FREELIST;
++                if (strEQ(name + 7, "FSEEK"))
++                    return RPMERR_FSEEK;
++                if (strEQ(name + 7, "FWRITE"))
++                    return RPMERR_FWRITE;
+                 break;
+               case 'G':
+                 if (strEQ(name + 7, "GDBMOPEN"))
+@@ -153,6 +168,8 @@
+                     return RPMERR_GZIP;
+                 break;
+               case 'I':
++                if (strEQ(name + 7, "IMPORT"))
++                    return RPMERR_IMPORT;
+                 if (strEQ(name + 7, "INTERNAL"))
+                     return RPMERR_INTERNAL;
+                 break;
+@@ -161,6 +178,10 @@
+                     return RPMERR_LDD;
+                 break;
+               case 'M':
++                if (strEQ(name + 7, "MAKETEMP"))
++                    return RPMERR_MAKETEMP;
++                if (strEQ(name + 7, "MANIFEST"))
++                    return RPMERR_MANIFEST;
+                 if (strEQ(name + 7, "MKDIR"))
+                     return RPMERR_MKDIR;
+                 if (strEQ(name + 7, "MTAB"))
+@@ -179,6 +200,8 @@
+                     return RPMERR_NOSPACE;
+                 if (strEQ(name + 7, "NOSPEC"))
+                     return RPMERR_NOSPEC;
++                if (strEQ(name + 7, "NOTREG"))
++                    return RPMERR_NOTREG;
+                 if (strEQ(name + 7, "NOTSRPM"))
+                     return RPMERR_NOTSRPM;
+                 if (strEQ(name + 7, "NOUSER"))
+@@ -193,14 +216,34 @@
+                     return RPMERR_OLDDBMISSING;
+                 if (strEQ(name + 7, "OLDPACKAGE"))
+                     return RPMERR_OLDPACKAGE;
+-                break;
++                if (strEQ(name + 7, "OPEN"))
++                    return RPMERR_OPEN;
++		break;
+               case 'P':
+                 if (strEQ(name + 7, "PKGINSTALLED"))
+                     return RPMERR_PKGINSTALLED;
++                if (strEQ(name + 7, "POPEN"))
++                    return RPMERR_POPEN;
+                 break;
++	      case 'Q':
++                if (strEQ(name + 7, "QFMT"))
++                    return RPMERR_QFMT;
++                if (strEQ(name + 7, "QUERY"))
++                    return RPMERR_QUERY;
++                if (strEQ(name + 7, "QUERYINFO"))
++                    return RPMERR_QUERYINFO;
++		break;
+               case 'R':
+                 if (strEQ(name + 7, "READ") || strEQ(name + 7, "READERROR"))
+                     return RPMERR_READ;
++                if (strEQ(name + 7, "READLEAD"))
++                    return RPMERR_READLEAD;
++                if (strEQ(name + 7, "REGCOMP"))
++                    return RPMERR_REGCOMP;
++                if (strEQ(name + 7, "REGEXEC"))
++                    return RPMERR_REGEXEC;
++                if (strEQ(name + 7, "RELOAD"))
++                    return RPMERR_RELOAD;
+                 if (strEQ(name + 7, "RENAME"))
+                     return RPMERR_RENAME;
+                 if (strEQ(name + 7, "RMDIR"))
+@@ -213,6 +256,8 @@
+                     return RPMERR_SCRIPT;
+                 if (strEQ(name + 7, "SIGGEN"))
+                     return RPMERR_SIGGEN;
++                if (strEQ(name + 7, "SIGVFY"))
++                    return RPMERR_SIGVFY;
+                 if (strEQ(name + 7, "STAT"))
+                     return RPMERR_STAT;
+                 break;
+@@ -226,6 +271,10 @@
+                 if (strEQ(name + 7, "UNMATCHEDIF"))
+                     return RPMERR_UNMATCHEDIF;
+                 break;
++              case 'W':
++                if (strEQ(name + 7, "WRITELEAD"))
++                    return RPMERR_WRITELEAD;
++		break;
+               default:
+                 break;
+             }
+@@ -236,16 +285,18 @@
+                 return RPMFILE_CONFIG;
+             if (strEQ(name + 8, "DOC"))
+                 return RPMFILE_DOC;
+-            if (strEQ(name + 8, "DONOTUSE"))
+-                return RPMFILE_DONOTUSE;
+             if (strEQ(name + 8, "GHOST"))
+                 return RPMFILE_GHOST;
++            if (strEQ(name + 8, "ICON"))
++                return RPMFILE_ICON;
+             if (strEQ(name + 8, "LICENSE"))
+                 return RPMFILE_LICENSE;
+             if (strEQ(name + 8, "MISSINGOK"))
+                 return RPMFILE_MISSINGOK;
+             if (strEQ(name + 8, "NOREPLACE"))
+                 return RPMFILE_NOREPLACE;
++            if (strEQ(name + 8, "PUBKEY"))
++                return RPMFILE_PUBKEY;
+             if (strEQ(name + 8, "README"))
+                 return RPMFILE_README;
+             if (strEQ(name + 8, "SPECFILE"))
+@@ -258,9 +309,13 @@
+                 return RPMFILE_STATE_NOTINSTALLED;
+             if (strEQ(name + 8, "STATE_REPLACED"))
+                 return RPMFILE_STATE_REPLACED;
++            if (strEQ(name + 8, "STATE_WRONGCOLOR"))
++                return RPMFILE_STATE_WRONGCOLOR;
+         }
+         if (strnEQ(name, "RPMPROB_FILTER_", 15))
+         {
++            if (strEQ(name + 15, "DISKNODES"))
++                return RPMPROB_FILTER_DISKNODES;
+             if (strEQ(name + 15, "DISKSPACE"))
+                 return RPMPROB_FILTER_DISKSPACE;
+             if (strEQ(name + 15, "FORCERELOCATE"))
+@@ -282,8 +337,14 @@
+         {
+             if (strEQ(name + 9, "EQUAL"))
+                 return RPMSENSE_EQUAL;
++            if (strEQ(name + 9, "FIND_PROVIDES"))
++                return RPMSENSE_FIND_PROVIDES;
++            if (strEQ(name + 9, "FIND_REQUIRES"))
++                return RPMSENSE_FIND_REQUIRES;
+             if (strEQ(name + 9, "GREATER"))
+                 return RPMSENSE_GREATER;
++            if (strEQ(name + 9, "INTERP"))
++                return RPMSENSE_INTERP;
+             if (strEQ(name + 9, "LESS"))
+                 return RPMSENSE_LESS;
+             if (strEQ(name + 9, "PREREQ"))
+@@ -301,6 +362,12 @@
+         }
+         if (strnEQ(name, "RPMSIGTAG_", 10))
+         {
++            if (strEQ(name + 10, "BADSHA1_1"))
++                return RPMSIGTAG_BADSHA1_1;
++            if (strEQ(name + 10, "BADSHA1_2"))
++                return RPMSIGTAG_BADSHA1_2;
++            if (strEQ(name + 10, "DSA"))
++                return RPMSIGTAG_DSA;
+             if (strEQ(name + 10, "GPG"))
+                 return RPMSIGTAG_GPG;
+             if (strEQ(name + 10, "LEMD5_1"))
+@@ -309,25 +376,31 @@
+                 return RPMSIGTAG_LEMD5_2;
+             if (strEQ(name + 10, "MD5"))
+                 return RPMSIGTAG_MD5;
++            if (strEQ(name + 10, "PAYLOADSIZE"))
++                return RPMSIGTAG_PAYLOADSIZE;
+             if (strEQ(name + 10, "PGP"))
+                 return RPMSIGTAG_PGP;
+             if (strEQ(name + 10, "PGP5"))
+                 return RPMSIGTAG_PGP5;
++            if (strEQ(name + 10, "RSA"))
++                return RPMSIGTAG_RSA;
++            if (strEQ(name + 10, "SHA1"))
++                return RPMSIGTAG_SHA1;
+             if (strEQ(name + 10, "SIZE"))
+                 return RPMSIGTAG_SIZE;
+         }
+-        if (strnEQ(name, "RPMSIG_", 7))
++        if (strnEQ(name, "RPMRC_", 6))
+         {
+-            if (strEQ(name + 7, "BAD"))
+-                return RPMSIG_BAD;
+-            if (strEQ(name + 7, "NOKEY"))
+-                return RPMSIG_NOKEY;
+-            if (strEQ(name + 7, "NOTTRUSTED"))
+-                return RPMSIG_NOTTRUSTED;
+-            if (strEQ(name + 7, "OK"))
+-                return RPMSIG_OK;
+-            if (strEQ(name + 7, "UNKNOWN"))
+-                return RPMSIG_UNKNOWN;
++            if (strEQ(name + 6, "FAIL"))
++                return RPMRC_FAIL;
++            if (strEQ(name + 6, "NOKEY"))
++                return RPMRC_NOKEY;
++            if (strEQ(name + 6, "NOTTRUSTED"))
++                return RPMRC_NOTTRUSTED;
++            if (strEQ(name + 6, "NOTFOUND"))
++                return RPMRC_NOTFOUND;
++            if (strEQ(name + 6, "OK"))
++                return RPMRC_OK;
+         }
+         if (strnEQ(name, "RPMTAG_", 7))
+         {
+@@ -380,8 +453,12 @@
+                     return RPMTAG_DIRNAMES;
+                 if (strEQ(name + 7, "DISTRIBUTION"))
+                     return RPMTAG_DISTRIBUTION;
++                if (strEQ(name + 7, "DISTURL"))
++                    return RPMTAG_DISTURL;
+                 break;
+               case 'E':
++                if (strEQ(name + 7, "EPOCH"))
++                    return RPMTAG_EPOCH;
+                 if (strEQ(name + 7, "EXCLUDEARCH"))
+                     return RPMTAG_EXCLUDEARCH;
+                 if (strEQ(name + 7, "EXCLUDEOS"))
+@@ -392,6 +469,14 @@
+                     return RPMTAG_EXCLUSIVEOS;
+                 break;
+               case 'F':
++                if (strEQ(name + 7, "FILECLASS"))
++                    return RPMTAG_FILECLASS;
++                if (strEQ(name + 7, "FILECOLORS"))
++                    return RPMTAG_FILECOLORS;
++                if (strEQ(name + 7, "FILEDEPENDSN"))
++                    return RPMTAG_FILEDEPENDSN;
++                if (strEQ(name + 7, "FILEDEPENDSX"))
++                    return RPMTAG_FILEDEPENDSX;
+                 if (strEQ(name + 7, "FILEDEVICES"))
+                     return RPMTAG_FILEDEVICES;
+                 if (strEQ(name + 7, "FILEFLAGS"))
+@@ -430,6 +515,12 @@
+               case 'I':
+                 if (strEQ(name + 7, "ICON"))
+                     return RPMTAG_ICON;
++                if (strEQ(name + 7, "INSTALLCOLOR"))
++                    return RPMTAG_INSTALLCOLOR;
++                if (strEQ(name + 7, "INSTALLPREFIX"))
++                    return RPMTAG_INSTALLPREFIX;
++                if (strEQ(name + 7, "INSTALLTID"))
++                    return RPMTAG_INSTALLTID;
+                 if (strEQ(name + 7, "INSTALLTIME"))
+                     return RPMTAG_INSTALLTIME;
+                 if (strEQ(name + 7, "INSTPREFIXES"))
+@@ -454,6 +545,8 @@
+                     return RPMTAG_OBSOLETENAME;
+                 if (strEQ(name + 7, "OBSOLETEVERSION"))
+                     return RPMTAG_OBSOLETEVERSION;
++                if (strEQ(name + 7, "OPTFLAGS"))
++                    return RPMTAG_OPTFLAGS;
+                 if (strEQ(name + 7, "OS"))
+                     return RPMTAG_OS;
+                 break;
+@@ -462,6 +555,14 @@
+                     return RPMTAG_PACKAGER;
+                 if (strEQ(name + 7, "PATCH"))
+                     return RPMTAG_PATCH;
++                if (strEQ(name + 7, "PAYLOADCOMPRESSOR"))
++                    return RPMTAG_PAYLOADCOMPRESSOR;
++                if (strEQ(name + 7, "PAYLOADFLAGS"))
++                    return RPMTAG_PAYLOADFLAGS;
++                if (strEQ(name + 7, "PAYLOADFORMAT"))
++                    return RPMTAG_PAYLOADFORMAT;
++                if (strEQ(name + 7, "PLATFORM"))
++                    return RPMTAG_PLATFORM;
+                 if (strEQ(name + 7, "POSTIN"))
+                     return RPMTAG_POSTIN;
+                 if (strEQ(name + 7, "POSTINPROG"))
+@@ -555,12 +656,32 @@
+                 return RPMTRANS_FLAG_JUSTDB;
+             if (strEQ(name + 14, "KEEPOBSOLETE"))
+                 return RPMTRANS_FLAG_KEEPOBSOLETE;
++            if (strEQ(name + 14, "NOCONFIGS"))
++                return RPMTRANS_FLAG_NOCONFIGS;
+             if (strEQ(name + 14, "NODOCS"))
+                 return RPMTRANS_FLAG_NODOCS;
++            if (strEQ(name + 14, "NOMD5"))
++                return RPMTRANS_FLAG_NOMD5;
++            if (strEQ(name + 14, "NOPOST"))
++                return RPMTRANS_FLAG_NOPOST;
++            if (strEQ(name + 14, "NOPOSTUN"))
++                return RPMTRANS_FLAG_NOPOSTUN;
++            if (strEQ(name + 14, "NOPRE"))
++                return RPMTRANS_FLAG_NOPRE;
++            if (strEQ(name + 14, "NOPREUN"))
++                return RPMTRANS_FLAG_NOPREUN;
+             if (strEQ(name + 14, "NOSCRIPTS"))
+                 return RPMTRANS_FLAG_NOSCRIPTS;
++            if (strEQ(name + 14, "NOTRIGGERIN"))
++                return RPMTRANS_FLAG_NOTRIGGERIN;
++            if (strEQ(name + 14, "NOTRIGGERPOSTUN"))
++                return RPMTRANS_FLAG_NOTRIGGERPOSTUN;
++            if (strEQ(name + 14, "NOTRIGGERPREIN"))
++                return RPMTRANS_FLAG_NOTRIGGERPREIN;
+             if (strEQ(name + 14, "NOTRIGGERS"))
+                 return RPMTRANS_FLAG_NOTRIGGERS;
++            if (strEQ(name + 14, "NOTRIGGERUN"))
++                return RPMTRANS_FLAG_NOTRIGGERUN;
+             if (strEQ(name + 14, "TEST"))
+                 return RPMTRANS_FLAG_TEST;
+         }
+@@ -618,12 +739,32 @@
+         {
+             if (strEQ(name + 7, "DEPS"))
+                 return VERIFY_DEPS;
++            if (strEQ(name + 7, "DIGEST"))
++                return VERIFY_DIGEST;
+             if (strEQ(name + 7, "FILES"))
+                 return VERIFY_FILES;
++            if (strEQ(name + 7, "GROUP"))
++                return VERIFY_GROUP;
++            if (strEQ(name + 7, "HDRCHK"))
++                return VERIFY_HDRCHK;
++            if (strEQ(name + 7, "LINKTO"))
++                return VERIFY_LINKTO;
+             if (strEQ(name + 7, "MD5"))
+                 return VERIFY_MD5;
++            if (strEQ(name + 7, "MODE"))
++                return VERIFY_MODE;
++            if (strEQ(name + 7, "MTIME"))
++                return VERIFY_MTIME;
++            if (strEQ(name + 7, "RDEV"))
++                return VERIFY_RDEV;
+             if (strEQ(name + 7, "SCRIPT"))
+                 return VERIFY_SCRIPT;
++            if (strEQ(name + 7, "SIGNATURE"))
++                return VERIFY_SIGNATURE;
++            if (strEQ(name + 7, "SIZE"))
++                return VERIFY_SIZE;
++            if (strEQ(name + 7, "USER"))
++                return VERIFY_USER;
+         }
+         break;
+       default:
+--- Perl-RPM-0.40/RPM/Header.xs.orig	2002-05-10 09:37:08.000000000 +0200
++++ Perl-RPM-0.40/RPM/Header.xs	2003-11-16 16:49:48.183830144 +0100
+@@ -213,8 +213,10 @@
+ /* These three are for reading the header data from external sources */
+ static int new_from_fd_t(FD_t fd, RPM_Header* new_hdr)
+ {
+-    if (rpmReadPackageHeader(fd, &new_hdr->hdr, &new_hdr->isSource,
+-                             &new_hdr->major, &new_hdr->minor))
++    new_hdr->isSource = 0;
++    new_hdr->major = 0;
++    new_hdr->minor = 0;
++    if (rpmReadHeader(NULL, fd, &new_hdr->hdr, NULL))
+     {
+         /* Some cases of this failing, rpmError was already called. But not
+            all cases, unfortunately. So check the IV part of rpm_errSV */
