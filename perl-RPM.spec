@@ -2,11 +2,12 @@
 Summary:	Native bindings to the RPM Package Manager API for Perl
 Summary(pl):	Modu³ perla RPM
 Name:		perl-RPM
-Version:	0.32
-Release:	2
+Version:	0.40
+Release:	1
 License:	GPL
 Group:		Development/Languages/Perl
 Source0:	ftp://ftp.cpan.org/pub/CPAN/modules/by-module/RPM/Perl-RPM-%{version}.tar.gz
+Patch0:		%{name}-old-include.patch
 BuildRequires:	rpm-perlprov >= 3.0.3-16
 BuildRequires:	rpm-devel
 BuildRequires:	perl-devel >= 5.6.1
@@ -21,6 +22,7 @@ Modu³ perla RPM.
 
 %prep
 %setup -q -n Perl-RPM-%{version}
+%patch0 -p1
 
 %build
 perl Makefile.PL
@@ -42,6 +44,5 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/rpmprune
 %{perl_sitearch}/RPM.pm
 %{perl_sitearch}/RPM
-%dir %{perl_sitearch}/auto/RPM
-%attr(755,root,root) %{perl_sitearch}/auto/RPM/RPM.so
-%{_mandir}/man3/*
+%{perl_sitearch}/auto/RPM
+%{_mandir}/man[13]/*
