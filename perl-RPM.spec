@@ -2,7 +2,7 @@
 Summary:	Native bindings to the RPM Package Manager API for Perl
 Name:		perl-RPM
 Version:	0.40
-Release:	1
+Release:	2
 License:	GPL
 Group:		Development/Languages/Perl
 Source0:	ftp://ftp.cpan.org/pub/CPAN/modules/by-module/RPM/Perl-RPM-%{version}.tar.gz
