@@ -7,6 +7,7 @@ Release:	4
 License:	GPL
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/RPM/Perl-RPM-%{version}.tar.gz
+# Source0-md5:	f15aa29bd0af0e1102d757ce20500f26
 Patch0:		%{name}-old-include.patch
 BuildRequires:	perl-devel >= 5.6.1
 BuildRequires:	rpm-devel
