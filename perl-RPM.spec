@@ -10,7 +10,7 @@ Source0:	http://www.cpan.org/modules/by-module/RPM/Perl-RPM-%{version}.tar.gz
 Patch0:		%{name}-old-include.patch
 BuildRequires:	perl-devel >= 5.6.1
 BuildRequires:	rpm-devel
-BuildRequires:	rpm-perlprov >= 3.0.3-16
+BuildRequires:	rpm-perlprov >= 4.0.2-104
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	Perl-RPM
 
