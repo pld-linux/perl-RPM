@@ -1,16 +1,21 @@
+#
+%bcond_with	tests	# perform "make test" (uses rpm database, which must not
+			# be broken by gettext-in-header patch)
+#
 %include	/usr/lib/rpm/macros.perl
 Summary:	Native bindings to the RPM Package Manager API for Perl
 Summary(pl):	Natywne dowi±zania do API zarz±dcy pakietów RPM
 Name:		perl-RPM
 Version:	0.40
-Release:	4
+Release:	5
 License:	GPL
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/RPM/Perl-RPM-%{version}.tar.gz
 # Source0-md5:	f15aa29bd0af0e1102d757ce20500f26
-Patch0:		%{name}-old-include.patch
-BuildRequires:	perl-devel >= 5.6.1
-BuildRequires:	rpm-devel
+Patch0:		%{name}-43.patch
+URL:		http://www.blackperl.com/Perl-RPM/
+BuildRequires:	perl-devel >= 5.8.0
+BuildRequires:	rpm-devel >= 4.2.1
 BuildRequires:	rpm-perlprov >= 4.1-13
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	Perl-RPM
@@ -33,17 +38,21 @@ lub C++.
 
 %prep
 %setup -q -n Perl-RPM-%{version}
-%patch0 -p1
+%patch -p1
 
 %build
 %{__perl} Makefile.PL \
 	INSTALLDIRS=vendor
-%{__make}
+%{__make} \
+	OPTIMIZE="%{rpmcflags}"
+
+%{?with_tests:%{__make} test}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
