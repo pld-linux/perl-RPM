@@ -3,7 +3,7 @@ Summary:	Native bindings to the RPM Package Manager API for Perl
 Summary(pl):	Modu³ perla RPM
 Name:		perl-RPM
 Version:	0.32
-Release:	1
+Release:	2
 License:	GPL
 Group:		Development/Languages/Perl
 Source0:	ftp://ftp.perl.org/pub/CPAN/modules/by-module/RPM/Perl-RPM-%{version}.tar.gz
