@@ -1,5 +1,6 @@
 %include	/usr/lib/rpm/macros.perl
 Summary:	Native bindings to the RPM Package Manager API for Perl
+Summary(pl):	Natywne dowi±zania do API menad¿era pakietów RPM
 Name:		perl-RPM
 Version:	0.40
 Release:	2
@@ -14,11 +15,20 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	Perl-RPM
 
 %description
-The Perl-RPM package is an attempt to provide Perl-level access to the complete
-application programming interface that is a part of the RPM Package Manager
-(RPM). Rather than have scripts rely on executing RPM commands and parse the
-resultant output, this modules aims to provide Perl programmers the ability
-to do anything that would otherwise have been done in C or C++.
+The Perl-RPM package is an attempt to provide Perl-level access to the
+complete application programming interface that is a part of the RPM
+Package Manager (RPM). Rather than have scripts rely on executing RPM
+commands and parse the resultant output, this modules aims to provide
+Perl programmers the ability to do anything that would otherwise have
+been done in C or C++.
+
+%description -l pl
+Pakiet Perl-RPM to próba dostarczenia dostêpu z poziomu Perla do
+pe³nego interfejsu programistycznego, bêd±cego czê¶ci± menad¿era
+pakietów RPM. Zamiast polegaæ na wywo³ywaniu poleceñ RPM i
+analizowaniu ich wyj¶cia, te modu³y próbuj± dostarczyæ programistom
+perlowym mo¿liwo¶æ robienia wszystkiego, co musia³oby byæ robione w C
+lub C++.
 
 %prep
 %setup -q -n Perl-RPM-%{version}
