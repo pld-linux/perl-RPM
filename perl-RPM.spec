@@ -4,11 +4,11 @@
 #
 %include	/usr/lib/rpm/macros.perl
 Summary:	Native bindings to the RPM Package Manager API for Perl
-Summary(pl):	Natywne dowi±zania do API zarz±dcy pakietów RPM
+Summary(pl):	Natywne dowi±zania do API zarz±dcy pakietów RPM dla Perla
 Name:		perl-RPM
 Version:	0.40
 Release:	5
-License:	GPL
+License:	Artistic
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/RPM/Perl-RPM-%{version}.tar.gz
 # Source0-md5:	f15aa29bd0af0e1102d757ce20500f26
