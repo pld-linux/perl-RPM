@@ -6,7 +6,7 @@ Version:	0.40
 Release:	3
 License:	GPL
 Group:		Development/Languages/Perl
-Source0:	ftp://ftp.cpan.org/pub/CPAN/modules/by-module/RPM/Perl-RPM-%{version}.tar.gz
+Source0:	http://www.cpan.org/modules/by-module/RPM/Perl-RPM-%{version}.tar.gz
 Patch0:		%{name}-old-include.patch
 BuildRequires:	perl-devel >= 5.6.1
 BuildRequires:	rpm-devel
