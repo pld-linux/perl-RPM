@@ -8,9 +8,9 @@ License:	GPL
 Group:		Development/Languages/Perl
 Source0:	ftp://ftp.cpan.org/pub/CPAN/modules/by-module/RPM/Perl-RPM-%{version}.tar.gz
 Patch0:		%{name}-old-include.patch
-BuildRequires:	rpm-perlprov >= 3.0.3-16
-BuildRequires:	rpm-devel
 BuildRequires:	perl-devel >= 5.6.1
+BuildRequires:	rpm-devel
+BuildRequires:	rpm-perlprov >= 3.0.3-16
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	Perl-RPM
 
@@ -33,14 +33,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
-gzip -9nf README
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz
+%doc README
 %attr(755,root,root) %{_bindir}/rpmprune
 %{perl_sitearch}/RPM.pm
 %{perl_sitearch}/RPM
