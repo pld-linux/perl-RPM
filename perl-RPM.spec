@@ -2,16 +2,18 @@
 Summary:	Native bindings to the RPM Package Manager API for Perl
 Summary(pl):	Modu³ perla RPM
 Name:		perl-RPM
-Version:	0.30
-Release:	4
+Version:	0.31
+Release:	1
 License:	GPL
 Group:		Development/Languages/Perl
 Group(de):	Entwicklung/Sprachen/Perl
 Group(pl):	Programowanie/Jêzyki/Perl
 Source0:	ftp://ftp.perl.org/pub/CPAN/modules/by-module/RPM/Perl-RPM-%{version}.tar.gz
 BuildRequires:	rpm-perlprov >= 3.0.3-16
+BuildRequires:	rpm-devel
 BuildRequires:	perl >= 5.6
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+Obsoletes:	Perl-RPM
 
 %description
 RPM perl module.
@@ -39,7 +41,9 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc *.gz
+%atr(755,root,root) %{_bindir}/rpmprune
 %{perl_sitearch}/RPM.pm
 %{perl_sitearch}/RPM
-%{perl_sitearch}/auto/RPM
+%dir %{perl_sitearch}/auto/RPM
+%attr(755,root,root) %{perl_sitearch}/auto/RPM/RPM.so
 %{_mandir}/man3/*
