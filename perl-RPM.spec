@@ -41,7 +41,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc *.gz
-%atr(755,root,root) %{_bindir}/rpmprune
+%attr(755,root,root) %{_bindir}/rpmprune
 %{perl_sitearch}/RPM.pm
 %{perl_sitearch}/RPM
 %dir %{perl_sitearch}/auto/RPM
