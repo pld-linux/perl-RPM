@@ -2,7 +2,7 @@
 Summary:	Native bindings to the RPM Package Manager API for Perl
 Summary(pl):	Modu³ perla RPM
 Name:		perl-RPM
-Version:	0.31
+Version:	0.32
 Release:	1
 License:	GPL
 Group:		Development/Languages/Perl
@@ -11,7 +11,7 @@ Group(pl):	Programowanie/Jêzyki/Perl
 Source0:	ftp://ftp.perl.org/pub/CPAN/modules/by-module/RPM/Perl-RPM-%{version}.tar.gz
 BuildRequires:	rpm-perlprov >= 3.0.3-16
 BuildRequires:	rpm-devel
-BuildRequires:	perl >= 5.6
+BuildRequires:	perl-devel >= 5.6.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	Perl-RPM
 
