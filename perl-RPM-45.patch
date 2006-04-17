@@ -1,0 +1,44 @@
+--- Perl-RPM-0.40/RPM/Constants.pm.orig	2006-04-17 19:58:58.000000000 +0200
++++ Perl-RPM-0.40/RPM/Constants.pm	2006-04-17 19:59:19.000000000 +0200
+@@ -160,7 +160,6 @@
+                 RPMTAG_CONFLICTFLAGS
+                 RPMTAG_CONFLICTNAME
+                 RPMTAG_CONFLICTVERSION
+-                RPMTAG_COPYRIGHT
+                 RPMTAG_COOKIE
+                 RPMTAG_DESCRIPTION
+                 RPMTAG_DIRINDEXES
+@@ -435,11 +434,6 @@
+ elements that the package obsoletes, those the package provides and those
+ the package requires (see L<"Three-Part Linkage"> below).
+ 
+-=item RPMTAG_COPYRIGHT
+-
+-Maintained by RPM for backwards-compatibility with some older packages. It
+-is the same as C<RPMTAG_LICENSE>.
+-
+ =item RPMTAG_COOKIE ($)
+ 
+ A simple tag, a single text string, added at the time the RPM is created.
+--- Perl-RPM-0.40/RPM/Constants.xs.orig	2006-04-17 19:57:41.000000000 +0200
++++ Perl-RPM-0.40/RPM/Constants.xs	2006-04-17 19:58:51.000000000 +0200
+@@ -439,8 +439,6 @@
+                     return RPMTAG_CONFLICTNAME;
+                 if (strEQ(name + 7, "CONFLICTVERSION"))
+                     return RPMTAG_CONFLICTVERSION;
+-                if (strEQ(name + 7, "COPYRIGHT"))
+-                    return RPMTAG_COPYRIGHT;
+                 if (strEQ(name + 7, "COOKIE"))
+                     return RPMTAG_COOKIE;
+                 break;
+--- Perl-RPM-0.40/RPM/Constants.xs.orig	2006-04-17 20:06:41.000000000 +0200
++++ Perl-RPM-0.40/RPM/Constants.xs	2006-04-17 20:06:51.000000000 +0200
+@@ -693,8 +693,6 @@
+                 return RPMVAR_NUM;
+             if (strEQ(name + 7, "OPTFLAGS"))
+                 return RPMVAR_OPTFLAGS;
+-            if (strEQ(name + 7, "PROVIDES"))
+-                return RPMVAR_PROVIDES;
+         }
+         if (strnEQ(name, "RPMVERIFY_", 10))
+         {

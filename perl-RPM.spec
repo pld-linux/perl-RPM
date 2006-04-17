@@ -13,6 +13,7 @@ Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/RPM/Perl-RPM-%{version}.tar.gz
 # Source0-md5:	f15aa29bd0af0e1102d757ce20500f26
 Patch0:		%{name}-43.patch
+Patch1:		%{name}-45.patch
 URL:		http://www.blackperl.com/Perl-RPM/
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-devel >= 4.4.1
@@ -39,6 +40,7 @@ lub C++.
 %prep
 %setup -q -n Perl-RPM-%{version}
 %patch -p1
+%patch1 -p1
 
 %build
 %{__perl} Makefile.PL \
