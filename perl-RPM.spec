@@ -39,7 +39,7 @@ lub C++.
 
 %prep
 %setup -q -n Perl-RPM-%{version}
-%patch -p1
+%patch0 -p1
 %patch1 -p1
 
 %build
