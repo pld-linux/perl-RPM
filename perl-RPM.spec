@@ -4,7 +4,7 @@
 #
 %include	/usr/lib/rpm/macros.perl
 Summary:	Native bindings to the RPM Package Manager API for Perl
-Summary(pl.UTF-8):   Natywne dowiązania do API zarządcy pakietów RPM dla Perla
+Summary(pl.UTF-8):	Natywne dowiązania do API zarządcy pakietów RPM dla Perla
 Name:		perl-RPM
 Version:	0.40
 Release:	9
