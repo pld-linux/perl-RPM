@@ -7,7 +7,7 @@ Summary:	Native bindings to the RPM Package Manager API for Perl
 Summary(pl.UTF-8):	Natywne dowiązania do API zarządcy pakietów RPM dla Perla
 Name:		perl-RPM
 Version:	0.40
-Release:	9
+Release:	10
 License:	Artistic
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/RPM/Perl-RPM-%{version}.tar.gz
