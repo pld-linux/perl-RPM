@@ -2,7 +2,6 @@
 %bcond_with	tests	# perform "make test" (uses rpm database, which must not
 			# be broken by gettext-in-header patch)
 #
-%include	/usr/lib/rpm/macros.perl
 Summary:	Native bindings to the RPM Package Manager API for Perl
 Summary(pl.UTF-8):	Natywne dowiązania do API zarządcy pakietów RPM dla Perla
 Name:		perl-RPM
